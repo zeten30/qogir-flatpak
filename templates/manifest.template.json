@@ -1,0 +1,43 @@
+{
+  "id": "{{prefix}}.{{theme}}",
+  "branch": "{{branch}}",
+  "runtime": "org.gnome.Sdk",
+  "build-extension": true,
+  "sdk": "org.gnome.Sdk",
+  "runtime-version": "{{runtime_v}}",
+  "appstream-compose": false,
+  "separate-locales": false,
+  "modules": [
+    {
+      "name": "{{theme}}",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -pm 755 /usr/share/runtime/share/themes/{{theme}}/gtk-3.0",
+        "cp src/gtk-3.0/gtk-win-dark.css /usr/share/runtime/share/themes/{{theme}}/gtk-3.0/gtk.css",
+        "cp -r src/gtk-3.0/assets /usr/share/runtime/share/themes/{{theme}}/gtk-3.0"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/vinceliuice/Qogir-theme/archive/{{release_tar}}",
+          "sha256": "{{release_sha256}}"
+        }
+      ]
+    },
+    {
+      "name": "appdata",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p ${FLATPAK_DEST}/share/appdata",
+        "cp {{prefix}}.{{theme}}.appdata.xml ${FLATPAK_DEST}/share/appdata",
+        "appstream-compose --basename={{prefix}}.{{theme}} --prefix=${FLATPAK_DEST} --origin=flatpak {{prefix}}.{{theme}}"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "{{prefix}}.{{theme}}.appdata.xml"
+        }
+      ]
+    }
+  ]
+}

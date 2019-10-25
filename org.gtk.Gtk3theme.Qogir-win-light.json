@@ -1,0 +1,43 @@
+{
+  "id": "org.gtk.Gtk3theme.Qogir-win-light",
+  "branch": "3.22",
+  "runtime": "org.gnome.Sdk",
+  "build-extension": true,
+  "sdk": "org.gnome.Sdk",
+  "runtime-version": "3.26",
+  "appstream-compose": false,
+  "separate-locales": false,
+  "modules": [
+    {
+      "name": "Qogir-win-light",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -pm 755 /usr/share/runtime/share/themes/Qogir-win-light/gtk-3.0",
+        "cp src/gtk-3.0/gtk-win-dark.css /usr/share/runtime/share/themes/Qogir-win-light/gtk-3.0/gtk.css",
+        "cp -r src/gtk-3.0/assets /usr/share/runtime/share/themes/Qogir-win-light/gtk-3.0"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/vinceliuice/Qogir-theme/archive/2019-08-31.tar.gz",
+          "sha256": "e2c26c29d8a72bc67bcd13934cc1ef95587295a5dbc50dd61f047891a75e3b4d"
+        }
+      ]
+    },
+    {
+      "name": "appdata",
+      "buildsystem": "simple",
+      "build-commands": [
+        "mkdir -p ${FLATPAK_DEST}/share/appdata",
+        "cp org.gtk.Gtk3theme.Qogir-win-light.appdata.xml ${FLATPAK_DEST}/share/appdata",
+        "appstream-compose --basename=org.gtk.Gtk3theme.Qogir-win-light --prefix=${FLATPAK_DEST} --origin=flatpak org.gtk.Gtk3theme.Qogir-win-light"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "org.gtk.Gtk3theme.Qogir-win-light.appdata.xml"
+        }
+      ]
+    }
+  ]
+}
