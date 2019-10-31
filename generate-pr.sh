@@ -4,8 +4,9 @@
 
 for i in $(ls ../qogir-flatpak/*.json | sed -e 's/.*org/org/' -e 's/\.json//'); do 
   echo ${i}
+  git checkout new-pr
+  rm -rf *.*
   git checkout -b ${i}
-  rm -rf *.json *.xml
   cp ../qogir-flatpak/${i}.* .
   git add . 
   git commit -a -m "New theme - ${i}"
