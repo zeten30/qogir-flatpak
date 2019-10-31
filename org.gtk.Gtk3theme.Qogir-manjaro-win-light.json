@@ -12,14 +12,16 @@
       "name": "Qogir-manjaro-win-light",
       "buildsystem": "simple",
       "build-commands": [
-        "mkdir -pm 755 /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0",
-        "cp src/gtk-3.0/gtk-win-dark.css /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/gtk.css",
-        "cp -r src/gtk-3.0/assets /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0"
+        "mkdir -pm 755 /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/assets",
+        "cp -fr src/gtk-3.0/assets/assets-common/* /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/assets/",
+        "cp -fr src/gtk-3.0/assets/assets-manjaro/* /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/assets/",
+        "cp src/gtk-3.0/theme/gtk-win-dark.css /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/gtk-dark.css",
+        "cp src/gtk-3.0/theme/gtk-win-light.css /usr/share/runtime/share/themes/Qogir-manjaro-win-light/gtk-3.0/gtk.css"
       ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/vinceliuice/Qogir-theme/archive/Qogir-theme-2019-10-25.tar.gz",
+          "url": "https://github.com/vinceliuice/Qogir-theme/archive/2019-10-25.tar.gz",
           "sha256": "07027ad930f4cba10c92ce782fa6b3747afefaafc4bc029692e95ad8f3dcd1ff"
         }
       ]
