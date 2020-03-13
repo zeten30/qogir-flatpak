@@ -1,6 +1,6 @@
 {
   "id": "org.gtk.Gtk3theme.Qogir-ubuntu-win-dark",
-  "branch": "3.34",
+  "branch": "3.22",
   "runtime": "org.gnome.Sdk",
   "build-extension": true,
   "sdk": "org.gnome.Sdk",
