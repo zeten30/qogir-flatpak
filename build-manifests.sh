@@ -1,10 +1,10 @@
 #!/bin/bash
 
 FLATPAK_PREFIX=org.gtk.Gtk3theme
-RELEASE_TAR=2019-10-25.tar.gz
-RELEASE_SHA256=07027ad930f4cba10c92ce782fa6b3747afefaafc4bc029692e95ad8f3dcd1ff
-BRANCH=3.22
-RUNTIME_V=3.26
+RELEASE_TAR=2020-02-26.tar.gz
+RELEASE_SHA256=0cce185bf300ef2265ba435d3e9e255506ea9093a24d0f0ee57097a8b52320fa
+BRANCH=3.34
+RUNTIME_V=3.34
 THEME_VARIANTS="Qogir::
 Qogir::dark
 Qogir::light
@@ -64,15 +64,19 @@ for th in ${THEME_VARIANTS}; do
   "
 done
 
-# Install ??
-if [ "${1}" == "install" ]; then
+if [ "${1}" == "build" ]; then
+  # Build to local repo
   mkdir -p "${LOCAL_REPO}"
-  flatpak --user remote-delete "${LOCAL_REPO}"
+  flatpak --user remote-delete "${LOCAL_REPO}" 2>/dev/null | sort
 
   for f in ${MANIFESTS_TO_BUILD}; do
     flatpak-builder --repo="${LOCAL_REPO}" --force-clean build "${f}"
   done
+fi
 
+# Install ??
+
+if [ "${2}" == "install" ]; then
   flatpak --user remote-add --no-gpg-verify "${LOCAL_REPO}" "${LOCAL_REPO}"
 
   for f in ${MANIFESTS_TO_BUILD}; do
