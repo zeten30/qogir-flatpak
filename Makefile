@@ -11,3 +11,6 @@ build: clean
 
 install: clean
 	./build-manifests.sh build install
+
+update_flatpak:
+	./update-flatpak-repos.sh
